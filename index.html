@@ -1,321 +1,175 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>郑佳毅 - 个人主页</title>
+    <meta charset="UTF-8">
+    <title>郑佳毅 - 个人主页</title>
 
-  <!-- 字体 & 图标 -->
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-  <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    html, body {
-      width: 100%; height: 100%;
-      font-family: 'Poppins', 'Microsoft YaHei', sans-serif;
-      background: var(--bg-color);
-      color: var(--text-color);
-      scroll-behavior: smooth;
-    }
+        body {
+            font-family: "Helvetica Neue", Arial, sans-serif;
+            background: #f0f2f5;
+            line-height: 1.7;
+        }
 
-    /* ---------- 全局主题变量 ---------- */
-    :root {
-      --bg-color: #f7f9fa;     /* 更高级的冷白背景 */
-      --text-color: #333;
-      --card-bg: #fff;
-      --card-text: #333;
-      --primary-color: #2d6cdf; /* 高级蓝，沉稳 */
-    }
-    body.dark-mode {
-      --bg-color: #050505;
-      --text-color: #ccc;
-      --card-bg: #111111;
-      --card-text: #e0e0e0;
-    }
+        /* ---------- Header 区域 ---------- */
+        .header {
+            padding: 60px 20px;
+            background: linear-gradient(135deg, #1e3c72, #2a5298);
+            color: white;
+            text-align: center;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+        }
 
-    /* ---------- 背景效果 ---------- */
-    #particles-js, #bg-gradient {
-      position: fixed; top: 0; left: 0;
-      width: 100%; height: 100%;
-      pointer-events: none;
-    }
+        .header img {
+            width: 150px;
+            border-radius: 50%;
+            margin-bottom: 20px;
+            box-shadow: 0 0 15px rgba(0,0,0,0.3);
+            transition: transform .4s ease;
+        }
+        .header img:hover {
+            transform: scale(1.05);
+        }
 
-    /* 白天模式：改成更高级的蓝绿渐变 */
-    #bg-gradient {
-      background: linear-gradient(
-        -45deg,
-        #dfe9f3,
-        #c7e7e0,
-        #e8eef3,
-        #d7e3f0
-      );
-      background-size: 300% 300%;
-      animation: gradientBG 16s ease infinite;
-    }
+        .header h1 {
+            font-size: 36px;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
 
-    @keyframes gradientBG {
-      0% { background-position: 0% 50%; }
-      50% { background-position: 100% 50%; }
-      100% { background-position: 0% 50%; }
-    }
+        .header p {
+            font-size: 16px;
+            opacity: 0.9;
+        }
 
-    body.dark-mode #bg-gradient { display: none; }
-    body:not(.dark-mode) #particles-js {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 300vh;   /* 页面越长你就越调高 */
-  background-color: #000;
-  pointer-events: none;
-}
+        /* ---------- 主体容器 ---------- */
+        .container {
+            width: 85%;
+            max-width: 900px;
+            margin: 40px auto;
+            background: white;
+            padding: 40px;
+            border-radius: 14px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            animation: fadeIn 0.8s ease;
+        }
 
-    /* ---------- 内容布局 ---------- */
-    #main-content { position: relative; z-index: 1; }
-    .container { max-width: 900px; margin: 0 auto; padding: 40px 20px; }
-    header.container { text-align: center; padding-top: 60px; }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
 
-    .avatar {
-      width: 160px;
-      border-radius: 50%;
-      border: 4px solid var(--primary-color);
-      box-shadow: 0 0 10px rgba(0,0,0,0.2);
-    }
+        h2 {
+            color: #2a5298;
+            font-size: 22px;
+            border-left: 6px solid #2a5298;
+            padding-left: 12px;
+            margin-top: 30px;
+            margin-bottom: 15px;
+        }
 
-    h1 { font-size: 2.4em; margin-top: 20px; }
-    h2 {
-      font-size: 1.6em;
-      margin-bottom: 20px;
-      position: relative;
-      display: inline-block;
-    }
-    h2 i { color: var(--primary-color); margin-right: 0.4em; }
-    h2::after {
-      content: "";
-      width: 50px; height: 3px;
-      background: var(--primary-color);
-      display: block;
-      margin-top: 8px;
-    }
+        h3 {
+            margin-top: 20px;
+            margin-bottom: 8px;
+            color: #333;
+            font-size: 18px;
+        }
 
-    .card {
-      background: var(--card-bg);
-      color: var(--card-text);
-      border-radius: 10px;
-      padding: 25px;
-      margin-bottom: 25px;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.12);
-      transition: 0.3s;
-    }
-    .card:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 4px 15px rgba(0,0,0,0.18);
-    }
+        .info-box {
+            font-size: 16px;
+        }
 
-    /* ---------- 技能进度条 ---------- */
-    .skill-item { margin-bottom: 20px; }
-    .skill-top { display: flex; justify-content: space-between; margin-bottom: 6px; }
-    .skill-bar { background: #e0e0e0; border-radius: 4px; overflow: hidden; }
-    .bar {
-      height: 8px; width: 0%;
-      background: var(--primary-color);
-      transition: width 1.5s;
-    }
+        ul {
+            margin-top: 10px;
+            padding-left: 20px;
+        }
 
-    /* ---------- 主题切换按钮 ---------- */
-    .theme-toggle {
-      position: fixed;
-      top: 20px; right: 20px;
-      z-index: 99;
-      padding: 10px;
-      border-radius: 50%;
-      background: var(--card-bg);
-      border: none;
-      box-shadow: 0 0 6px rgba(0,0,0,0.15);
-      cursor: pointer;
-    }
-    .theme-toggle i { color: var(--primary-color); font-size: 1.2em; }
-  </style>
+        li {
+            margin-bottom: 6px;
+        }
+
+        /* 分割线更柔和 */
+        hr {
+            border: none;
+            border-top: 1px solid #eee;
+            margin: 25px 0;
+        }
+    </style>
+
 </head>
 
-<body class="dark-mode">
+<body>
 
-<div id="particles-js"></div>
-<div id="bg-gradient"></div>
+<!-- ---------- Header ---------- -->
+<div class="header">
+    <img src="selfish.png" alt="Avatar">
+    <h1>郑佳毅</h1>
+    <p>电话：18902029558 | 邮箱：jzheng688@connect.hkust-gz.edu.cn</p>
+</div>
 
-<main id="main-content">
+<!-- ---------- Main Content ---------- -->
+<div class="container">
 
-  <!-- 个人简介 -->
-  <header class="container" data-aos="fade-up">
-    <img src="selfish.png" alt="Avatar" class="avatar" data-aos="fade-down">
-    <h1 data-aos="fade-up">郑佳毅</h1>
-    <p data-aos="fade-up" data-aos-delay="150">
-      大数据智能硕士 | 算法方向 | 机器学习 / 深度学习 / RAG / 模型部署
+    <h2>教育背景</h2>
+    <div class="info-box">
+        <p><strong>2020 - 2024 本科：</strong> 安徽大学（互联网金融，经济学学位）</p>
+        <p><strong>2025 - 至今 硕士：</strong> 香港科技大学（广州）（大数据智能，计算机学位）</p>
+    </div>
+
+    <h2>求职意向</h2>
+    <div class="info-box">
+        <p><strong>意向岗位：</strong> 算法实习生</p>
+        <p><strong>求职类型：</strong> 校招</p>
+    </div>
+
+    <h2>相关技能</h2>
+    <ul>
+        <li><strong>算法知识：</strong>机器学习、深度学习、模型微调、强化学习、基础模型架构。</li>
+        <li><strong>算法技能：</strong>大语言模型微调、模型对齐、强化学习、部署；BERT 小模型微调、RAG 开发。</li>
+        <li><strong>数据处理技能：</strong>Spark、SQL、Pandas、Numpy、PyTorch。</li>
+        <li><strong>计算机基础：</strong>Docker、Linux 命令、API 接口开发。</li>
+        <li><strong>编程语言：</strong>Python（主力），Kotlin、Java、TypeScript、JavaScript、CSS、HTML、Go。</li>
+    </ul>
+
+    <h2>项目经历</h2>
+
+    <h3>2025.05 - 2025.08 | 模型部署应用 | 合肥非度技术有限公司</h3>
+    <ul>
+        <li>负责本地部署不同模型、优化 prompt、开发调用接口。</li>
+        <li>使用 vLLM、Ollama 进行大模型部署（DeepSeek 32B、Qwen 7B、Qwen2.5-VL 等）。</li>
+        <li>使用 BGE-Embedding 构建 embedding 系统。</li>
+    </ul>
+
+    <h3>2025.03 - 2025.06 | 基于 RAG 的定价系统开发 | 合肥非度技术有限公司</h3>
+    <ul>
+        <li>基于企业数据库的历史产品进行语义检索，用相似产品预测价格。</li>
+        <li>负责后端接口开发、RAG 系统搭建、Linux 环境维护。</li>
+    </ul>
+
+    <h2>工作经历</h2>
+
+    <h3>2025.03 - 2025.08 | 人工智能产品线 | 合肥非度技术有限公司</h3>
+    <ul>
+        <li>开源模型应用开发，API、部署、维护，使用语音识别模型与大语言模型。</li>
+    </ul>
+
+    <h3>2024.07 - 2025.01 | 安卓开发 | 合肥亲爱的译官技术有限公司</h3>
+    <ul>
+        <li>开发翻译软件移动端，使用 Java、Kotlin；负责 UI 设计、Bug 修复。</li>
+    </ul>
+
+    <h2>自我评价</h2>
+    <p class="info-box">
+        关注前沿计算体系结构，阅读新型网络架构探索未来计算技术创新应用方向。
     </p>
-    <p data-aos="fade-up" data-aos-delay="200">
-      📞 18902029558 ｜ 📧 jzheng688@connect.hkust-gz.edu.cn
-    </p>
-  </header>
 
-  <!-- 教育背景 -->
-  <section class="container">
-    <h2 data-aos="fade-up"><i class="fas fa-graduation-cap"></i>教育背景</h2>
-
-    <div class="card" data-aos="fade-up">
-      <h3>安徽大学 本科（互联网金融）｜2020 - 2024</h3>
-      <p>获得经济学学位，掌握数据分析、编程基础与经济建模知识。</p>
-    </div>
-
-    <div class="card" data-aos="fade-up" data-aos-delay="100">
-      <h3>香港科技大学（广州）硕士（大数据智能）｜2025 - 至今</h3>
-      <p>专注机器学习、深度学习、数据系统、大模型技术方向。</p>
-    </div>
-  </section>
-
-  <!-- 求职意向 -->
-  <section class="container">
-    <h2 data-aos="fade-up"><i class="fas fa-briefcase"></i>求职意向</h2>
-    <div class="card" data-aos="fade-up">
-      <p><strong>意向岗位：</strong>算法实习生</p>
-      <p><strong>求职类型：</strong>校招 / 实习</p>
-    </div>
-  </section>
-
-  <!-- 技能 -->
-  <section id="skills" class="container">
-    <h2 data-aos="fade-up"><i class="fas fa-tools"></i>相关技能</h2>
-
-    <!-- 技能列表 -->
-    <div class="skill-item" data-aos="fade-up">
-      <div class="skill-top"><span>Python / PyTorch</span><span>90%</span></div>
-      <div class="skill-bar"><div class="bar" data-percent="90"></div></div>
-    </div>
-
-    <div class="skill-item" data-aos="fade-up">
-      <div class="skill-top"><span>机器学习 / 深度学习</span><span>85%</span></div>
-      <div class="skill-bar"><div class="bar" data-percent="85"></div></div>
-    </div>
-
-    <div class="skill-item" data-aos="fade-up">
-      <div class="skill-top"><span>RAG / 微调 / 模型对齐</span><span>80%</span></div>
-      <div class="skill-bar"><div class="bar" data-percent="80"></div></div>
-    </div>
-
-    <div class="skill-item" data-aos="fade-up">
-      <div class="skill-top"><span>Spark / SQL / Pandas</span><span>80%</span></div>
-      <div class="skill-bar"><div class="bar" data-percent="80"></div></div>
-    </div>
-
-    <div class="skill-item" data-aos="fade-up">
-      <div class="skill-top"><span>Docker / Linux</span><span>75%</span></div>
-      <div class="skill-bar"><div class="bar" data-percent="75"></div></div>
-    </div>
-  </section>
-
-  <!-- 项目经历 -->
-  <section class="container">
-    <h2 data-aos="fade-up"><i class="fas fa-folder-open"></i>项目经历</h2>
-
-    <div class="card" data-aos="fade-up">
-      <h3>模型部署应用｜合肥非度技术有限公司｜2025.05 - 2025.08</h3>
-      <ul>
-        <li>负责本地部署 DeepSeek、Qwen、Qwen2.5-VL 等模型。</li>
-        <li>使用 vLLM、Ollama 构建推理服务与 API。</li>
-        <li>构建企业级 BGE-Embedding 检索系统。</li>
-      </ul>
-    </div>
-
-    <div class="card" data-aos="fade-up" data-aos-delay="100">
-      <h3>基于 RAG 的定价系统｜合肥非度技术有限公司｜2025.03 - 2025.06</h3>
-      <ul>
-        <li>基于历史产品语义检索实现智能定价。</li>
-        <li>负责后端接口开发、RAG 架构搭建。</li>
-        <li>维护 Linux 环境与部署流程。</li>
-      </ul>
-    </div>
-  </section>
-
-  <!-- 工作经历 -->
-  <section class="container">
-    <h2 data-aos="fade-up"><i class="fas fa-briefcase"></i>工作经历</h2>
-
-    <div class="card" data-aos="fade-up">
-      <h3>人工智能产品线｜合肥非度技术有限公司｜2025.03 - 2025.08</h3>
-      <ul>
-        <li>使用语音识别模型 + 大语言模型构建 AI 应用。</li>
-        <li>开发 API、维护部署环境。</li>
-      </ul>
-    </div>
-
-    <div class="card" data-aos="fade-up" data-aos-delay="100">
-      <h3>安卓开发｜合肥亲爱的译官技术有限公司｜2024.07 - 2025.01</h3>
-      <ul>
-        <li>使用 Java/Kotlin 开发移动端翻译应用。</li>
-        <li>负责 UI 设计与功能维护。</li>
-      </ul>
-    </div>
-  </section>
-
-  <!-- 自我评价 -->
-  <section class="container">
-    <h2 data-aos="fade-up"><i class="fas fa-user"></i>自我评价</h2>
-    <div class="card" data-aos="fade-up">
-      <p>关注前沿计算体系结构，持续学习网络架构、未来计算技术与大模型相关方向。</p>
-      <p>对新技术保持强烈好奇心，能够快速接收并消化新知识。</p>
-    </div>
-  </section>
-
-</main>
-
-<!-- 主题切换按钮 -->
-<button id="theme-toggle" class="theme-toggle"><i id="theme-icon" class="fas fa-sun"></i></button>
-
-<!-- JS：Particles、AOS、技能条动画、主题切换 -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/particles.js/2.0.0/particles.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
-<script>
-AOS.init({ duration: 800, once: true });
-
-/* 粒子效果 */
-particlesJS("particles-js", {
-  "particles": {
-    "number": { "value": 140 },
-    "color": { "value": "#ffffff" },
-    "shape": { "type": "circle" },
-    "opacity": { "value": 0.5, "random": true },
-    "size": { "value": 3, "random": true },
-    "line_linked": { "enable": false },
-    "move": { "enable": true, "speed": 0.6, "random": true }
-  }
-});
-
-/* 技能条动画 */
-document.addEventListener('DOMContentLoaded', () => {
-  const section = document.getElementById('skills');
-  const bars = document.querySelectorAll('.bar');
-
-  const observer = new IntersectionObserver((entries) => {
-    if (entries[0].isIntersecting) {
-      bars.forEach(bar => bar.style.width = bar.dataset.percent + '%');
-      observer.disconnect();
-    }
-  }, { threshold: 0.3 });
-
-  observer.observe(section);
-});
-
-/* 主题切换 */
-const toggleBtn = document.getElementById('theme-toggle');
-const icon = document.getElementById('theme-icon');
-
-toggleBtn.addEventListener('click', () => {
-  document.body.classList.toggle('dark-mode');
-  icon.classList = document.body.classList.contains('dark-mode')
-    ? 'fas fa-sun' : 'fas fa-moon';
-});
-</script>
+</div>
 
 </body>
 </html>
